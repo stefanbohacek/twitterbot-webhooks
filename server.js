@@ -34,7 +34,7 @@ app.get('/webhooks', function (req, res) {
 
   if (crc_token){
     console.log('crc_token', crc_token);
-    var response_token = 'sha256=' + crypto.createHmac('sha256', config.twitter.consumer_secret).update(crc_token).digest('base64');
+    var response_token = `sha256=${crypto.createHmac('sha256', config.twitter.consumer_secret).update(crc_token).digest('base64')}`;
 
     console.log('response_token', response_token);
     res.send(JSON.stringify({
@@ -64,7 +64,7 @@ app.get('/webhooks', function (req, res) {
                   console.log(data);
                   console.log('deleting invalid webhook url...');
 
-                  T.delete('account_activity/webhooks/' + data[0]['id'], {}, function(err, data, response) {
+                  T.delete(`account_activity/webhooks/${data[0]['id']}`, {}, function(err, data, response) {
                     if (err){
                       console.log('DELETE webhooks ERROR');
                       console.log(err);
@@ -89,7 +89,7 @@ app.get('/webhooks', function (req, res) {
       else{
         console.log('webhook url registered, subscribing...');
 
-        T.post('account_activity/webhooks/' + data.id + '/subscriptions', { webhook_id : data.id }, function(err, data, response) {
+        T.post(`account_activity/webhooks/${data.id}/subscriptions`, { webhook_id : data.id }, function(err, data, response) {
           if (err){
             console.log('GET webhooks ERROR');
             console.log(err);
@@ -160,12 +160,5 @@ app.get('/', function (req, res) {
 });
 
 var listener = app.listen(process.env.PORT, function () {
-  console.log('Your bot is running on port ' + listener.address().port);
+  console.log(`Your bot is running on port ${listener.address().port}`);
 });
-
-/*
-  TODO:
-  - general cleanup
-  - better error handling
-  - message queue to handle API rate limits
-*/
