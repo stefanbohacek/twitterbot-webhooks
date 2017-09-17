@@ -31,6 +31,12 @@ You can find more [tutorials](https://botwiki.org/tutorials/twitterbots/#tutoria
 And be sure to join the [Botmakers](https://botmakers.org/) online hangout and [submit your bot to Botwiki](https://botwiki.org/submit-your-bot) :-)
 
 
+##  TODO
+
+- break things up into modules as new functionality is added to the Webhooks API
+- message queue to handle API rate limits
+
+
 **Powered by [Glitch](https://glitch.com)**
 
 \ ゜o゜)ノ
