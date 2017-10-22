@@ -1,12 +1,18 @@
-Glitch Twitter bot template with Twitter Webhooks API
-=====================================================
+# Glitch Twitter bot template with Twitter Webhooks API 
+## (work in progress)
 
 
 ![Emoji wave hand](https://cdn.glitch.com/10c150f9-8a5f-4e26-8697-92c6eccd98fe%2Fdm.png?1497584587928)
 
-This is a template for making fun Twitter bots with [Glitch](https://glitch.com/) and the [Twit](https://github.com/ttezel/twit) node.js library. It uses the new [Twitter Webhooks API](https://dev.twitter.com/webhooks).
+This is a template for making fun Twitter bots with [Glitch](https://glitch.com/), the [Twit](https://github.com/ttezel/twit) node.js library, and the new [Twitter Webhooks API](https://dev.twitter.com/webhooks).
 
-While this API is in beta, you need to [get your Twitter application whitelisted](https://dev.twitter.com/webhooks/account-activity) and the API only supports delivery of Direct Messages.
+While this API is in beta, you need to [get your Twitter application whitelisted](https://developer.twitter.com/en/docs/accounts-and-users/subscribe-account-activity/overview) and the API only supports delivery of Direct Messages.
+
+- `routes/webhooks/twitter.js` handles the more technical aspects like webhook requests, CRC verification, etc 
+- `twitter.js` is a wrapper for the Twitter API that uses the Twit library
+- `twitterbot.js` is where you can write your bot's behavior
+
+
 
 
 
@@ -15,7 +21,7 @@ While this API is in beta, you need to [get your Twitter application whitelisted
 
 1. First, create a new Twitter account and a new Twitter app. ([This tutorial](https://botwiki.org/tutorials/how-to-create-a-twitter-app/) shows how.)
 2. Update the `.env` file with your Twitter API key/secrets. (The tutorial above explains how to get these.)
-3. Update `server.js` with some cool Twitter bot code. (The included example simply responds to every DM with "Hello 👋".)
+3. Update `twitterbot.js` with some cool Twitter bot code. (The included example simply responds to every DM with "Hello 👋".)
 4. Open your project's page (it looks like https://PROJECT-NAME.glitch.me) and click **Register webhook**.
 5. Your bot can now respond to DMs!
 
