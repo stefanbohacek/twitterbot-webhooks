@@ -1,31 +1,44 @@
 {
-  "name": "glitch-twitterbot-webhooks",
-  "version": "0.0.1",
-  "description": "Beep beep tweet!",
-  "main": "server.js",
+  "name": "twitter-webhook-boilerplate-node",
+  "version": "1.0.0",
+  "description": "Sample web app and helper scripts to get started with Twitter's Account Activity API",
+  "engines": {
+    "node": "8.11.2"
+  },
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "dependencies": {
-    "express": "^4.15.3",
-    "twit": "^2.2.6",
-    "body-parser": "^1.17.2",
-    "express-handlebars": "^3.0.0"
-  },
-  "engines": {
-    "node": "8.1.2"
+    "body-parser": "^1.16.1",
+    "command-line-args": "^5.0.1",
+    "csurf": "^1.9.0",
+    "ejs": "^2.5.7",
+    "express": "4.13.3",
+    "express-session": "^1.15.6",
+    "http-auth": "^3.2.3",
+    "memory-cache": "^0.2.0",
+    "nconf": "^0.8.4",
+    "passport": "^0.4.0",
+    "passport-twitter": "^1.0.4",
+    "prompt-promise": "^1.0.3",
+    "query-string": "^5.0.1",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "socket.io": "2.0.4",
+    "uuid": "^3.2.1",
+    "twit": "^2.2.9"
   },
   "repository": {
-    "url": ""
+    "type": "git",
+    "url": "https://github.com/twitterdev/account-activity-dashboard"
   },
   "keywords": [
     "node",
-    "glitch",
-    "gomix",
-    "hyperdev",
-    "twitter",
-    "twitterbot",
-    "bot",
-    "webhooks"
-  ]
+    "heroku",
+    "express",
+    "webhook",
+    "twitter"
+  ],
+  "license": "MIT"
 }

@@ -1,0 +1,25 @@
+<% include partials/header.ejs %>
+  <div class="card">
+    <div class="card-body">
+      <h2><i class="fab fa-twitter"></i> Account Activity Dashboard</h2>
+      <p>A sample application to demonstrate webhook and subscription management.
+      This app uses the premium Account Activity API.<br/>
+      Full API reference can be found on developer.twitter.com <a href="https://developer.twitter.com/en/docs/accounts-and-users/subscribe-account-activity/api-reference" target="_blank">here</a>.</p>
+      <hr>
+      <ul id="home-menu">
+        <li>
+          <a href="/webhook"><h5><i class="fas fa-cog"></i> Manage Webhook</h5></a>
+          <p>Create, update, delete and validate webhook configurations.</p>
+        </li>
+        <li>
+          <a href="/subscriptions"><h5><i class="fas fa-address-book"></i> Manage Subscriptions</h5></a>
+          <p>Add and remove Twitter user subscriptions.</p>
+        </li>
+        <li>
+          <a href="/activity"><h5><i class="fas fa-bolt"></i> Live Activity</h5></a>
+          <p>View live incoming Account Activity events for all users subscribed to.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+<% include partials/footer.ejs %>
