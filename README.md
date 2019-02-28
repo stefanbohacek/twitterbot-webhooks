@@ -1,4 +1,4 @@
-![Hello, bot!](https://cdn.glitch.com/83eb7282-8b27-4a01-9b8c-1c12487c6c08%2Fhello-bot.png?1526659763652)
+![Hello, bot!](https://cdn.glitch.com/83eb7282-8b27-4a01-9b8c-1c12487c6c08%2Fexample-dm.gif?1551356826729)
 
 # Twitter Bot Starter Project with Webhooks and Account Activity API
 
