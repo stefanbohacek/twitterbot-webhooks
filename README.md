@@ -1,48 +1,69 @@
-# Glitch Twitter bot template with Twitter Webhooks API 
-## (work in progress)
+![Hello, bot!](https://cdn.glitch.com/83eb7282-8b27-4a01-9b8c-1c12487c6c08%2Fhello-bot.png?1526659763652)
+
+# Twitter Bot Starter Project with Webhooks and Account Activity API
+
+This starter projects is based on [account-activity-dashboard](https://github.com/twitterdev/account-activity-dashboard) and uses Twitter's [Account Activity API](https://developer.twitter.com/en/docs/accounts-and-users/subscribe-account-activity/overview).
 
 
-![Emoji wave hand](https://cdn.glitch.com/10c150f9-8a5f-4e26-8697-92c6eccd98fe%2Fdm.png?1497584587928)
+## Tutorial
 
-This is a template for making fun Twitter bots with [Glitch](https://glitch.com/), the [Twit](https://github.com/ttezel/twit) node.js library, and the new [Twitter Webhooks API](https://dev.twitter.com/webhooks).
-
-While this API is in beta, you need to [get your Twitter application whitelisted](https://developer.twitter.com/en/docs/accounts-and-users/subscribe-account-activity/overview) and the API only supports delivery of Direct Messages.
-
-- `routes/webhooks/twitter.js` handles the more technical aspects like webhook requests, CRC verification, etc 
-- `twitter.js` is a wrapper for the Twitter API that uses the Twit library
-- `twitterbot.js` is where you can write your bot's behavior
+### Set up your app
 
 
+1. Remix this app.
+
+2. [Create a Twitter app](https://botwiki.org/tutorials/how-to-create-a-twitter-app/)
+
+3. On the **Permissions** tab > **Access** section > enable **Read, Write and Access direct messages**.
+
+4. On the **Keys and Access Tokens** tab > **Your Access Token** section > click **Create my access token** button.
+
+5. From the **Keys and Access Tokens** tab, copy the `consumer key`, `consumer secret`, `access token` and `access token secret` and add them to your `.env` file. You can also set `BOT_USERNAME`to your bot's screen name (without the @).
+
+6. On the **Settings** page, add the following URL values as whitelisted Callback URLs:
+
+    ```text
+    https://PROJECTNAME.glitch.me/callbacks/addsub
+    https://PROJECTNAME.glitch.me/callbacks/removesub
+    ```
+
+7. [Apply for a developer account](https://developer.twitter.com/en/apply/user), if you don't have one yet.
+
+8. Once you have your developer account, go to your developer dashboard and [create a new environment](https://developer.twitter.com/en/account/environments) for **Account Activity APISandbox**. Save the environment name as `ENV_NAME` in your `.env` file.
 
 
+9. To configure your webhook, load this web app in your browser (use the **Show** button) and follow the instructions below:
 
-## A quick tutorial
+<!-->
 
+  1. **Setup webhook config.** Navigate to the "manage webhook" view. Enter your webhook URL as `https://PROJECTNAME.glitch.me/webhook/twitter` and click "Create/Update."
 
-1. First, create a new Twitter account and a new Twitter app. ([This tutorial](https://botwiki.org/tutorials/how-to-create-a-twitter-app/) shows how.)
-2. Update the `.env` file with your Twitter API key/secrets. (The tutorial above explains how to get these.)
-3. Update `twitterbot.js` with some cool Twitter bot code. (The included example simply responds to every DM with "Hello 👋".)
-4. Open your project's page (it looks like https://PROJECT-NAME.glitch.me) and click **Register webhook**.
-5. Your bot can now respond to DMs!
-
-Also, for your convenience, your project's log will show your bot's activity.
-
-![Logging](https://cdn.glitch.com/10c150f9-8a5f-4e26-8697-92c6eccd98fe%2Fconsole.PNG?1497585764013)
+  2. **Add a user subscription.** Navigate to the "manage subscriptions" view. Click "add" and proceed with Twitter sign-in. Once complete your webhook will start to receive account activity events for the user.
 
 
-Check out [the Twit module documentation](https://github.com/ttezel/twit) for more examples of what your bot can do.
+### Write your bot code
 
-You can find more [tutorials](https://botwiki.org/tutorials/twitterbots/#tutorials-nodejs) and [open source Twitter bots](https://botwiki.org/tag/twitter+bot+opensource+nodejs/) on [Botwiki](https://botwiki.org).
-
-And be sure to join the [Botmakers](https://botmakers.org/) online hangout and [submit your bot to Botwiki](https://botwiki.org/submit-your-bot) :-)
+All your bot code will be inside `app.js`. You can access the [twit](https://github.com/ttezel/twit) library as `twitterbot.twit`, and there is a few helper methods  in `twitterbot.js`, like `tweet` or `send_dm`. 
 
 
-##  TODO
+```
+const twitterbot = require('./twitterbot');
 
-- break things up into modules as new functionality is added to the Webhooks API
-- message queue to handle API rate limits
+twitterbot.on('direct_message_events', function(dm){
+    twitterbot.send_dm(dm.sender_id, 'hello', function(err){
+      if (err){
+        console.log(err);
+      }
+    });
+});
 
+const dashboard = require('./dashboard')(twitterbot);
+```
 
-**Powered by [Glitch](https://glitch.com)**
+Be sure to check out the `examples` folder, and join us over at botmakers.org!
 
-\ ゜o゜)ノ
+## TODO:
+
+- make Account Activity log persistent (1 week?)
+- store API calls in a queue and work around the API rate limits
+- save the ID of the events the bot already responded to
